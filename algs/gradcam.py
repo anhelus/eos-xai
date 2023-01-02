@@ -36,7 +36,7 @@ class GradCAM():
             self.__layer_name = value
     
     @staticmethod
-    def get_conv_layer(model):
+    def get_conv_layer(model: Model):
         """ Trova l'ultimo layer convoluzionale.
 
         Funzione che trova l'ultimo layer convoluzionale
@@ -48,7 +48,7 @@ class GradCAM():
         raise ValueError('Il modello non ha un layer convoluzionale.')
     
     def get_heatmap(self, image):
-        """
+        """ Calcola la mappa di attivazione mediante GradCAM
         """
         # creiamo il modello per l'explainability
         expl_model = Model(
@@ -82,7 +82,12 @@ class GradCAM():
         heatmap = (heatmap - np.min(heatmap)) / ((heatmap.max() - heatmap.min()) + 1e-18)
         return (heatmap * 255).astype('uint8')
     
-    def sovrapponi(self, heatmap, image, alpha=0.5, cmap = cv2.COLORMAP_JET):
+    @staticmethod
+    def overlap(
+        heatmap,
+        image,
+        alpha: float = 0.5,
+        cmap: int = cv2.COLORMAP_JET):
         """
         """
         heatmap = cv2.applyColorMap(heatmap, cmap)
