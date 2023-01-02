@@ -1,6 +1,3 @@
-**To avoid retyping too much info. Do a search and replace with your text editor for the following:**
-`eos-xai`, `twitter_handle`, `project_title`, `project_description`
-
 <!--
 *** Forked by Best-README-Template by Othneil Drew.
 -->
